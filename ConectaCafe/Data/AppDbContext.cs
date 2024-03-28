@@ -16,16 +16,30 @@ public class AppDbContext : DbContext
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Configuracao> Configuracoes { get; set; }
     public DbSet<Produto> Produtos { get; set; }
-    public DbSet<Tag> Tags { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
 
-    protected override void OnModelCreating(ModelBuilder Builder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(Builder);
+        base.OnModelCreating(builder);
 
         //FluentAPI
         #region muitos para muitos do BlogTag
+        builder.Entity<BlogTag>().HasKey(
+            bt => new {bt.BlogId, bt.TagId}
+        );
         
-        #endregion
+        
+        builder.Entity<BlogTag>()
+            .HasOne(bt => bt.Blog)
+            .WithMany(b => b.BlogTags)
+            .HasForeignKey (bt => bt.BlogId);
+
+        builder.Entity<BlogTag>()
+        .HasOne(bt => bt.Tag)
+        .WithMany(t => t.BlogTags)
+        .HasForeignKey(bt => bt.TagId);   
+        
+        #endregion     
     }
 }
