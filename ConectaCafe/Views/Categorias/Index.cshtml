@@ -1,36 +1,62 @@
 @model IEnumerable<ConectaCafe.Models.Categoria>
-
 @{
-    ViewData["Categoria"] = "Index";
+    ViewData["Title"] = "Categorias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Categoria</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div
+                    class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3 d-flex align-items-center justify-content-between ">
+                    <h5 class="text-white text-capitalize ps-3 m-0">@ViewData["Title"]</h5>
+                    <a asp-action="Create" class="text-white text-capitalize ps-3 me-3 d-flex align-items-center">
+                        <i class="material-icons m-1">add</i> Adicionar
+                    </a>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table id="dataTable" class="table align-items-center justify-content-center mb-0 w-100">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">@Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
+                                    Ações</th>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary my 2">Adicionar</a>
-</p>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-dark ">
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td >
+                                        <a asp-action="Edit" asp-route-id="@item.Id" title="Alterar">
+                                            <i class="material-icons m-1">edit</i>
+                                        </a> 
+                                        <a asp-action="Details" asp-route-id="@item.Id" title="Detalhes">
+                                            <i class="material-icons m-1">description</i>
+                                        </a> 
+                                        <a asp-action="Delete" asp-route-id="@item.Id" title="Deletar">
+                                            <i class="material-icons m-1">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

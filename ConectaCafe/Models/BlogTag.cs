@@ -8,7 +8,7 @@ public class BlogTag
 {
     [Key, Column(Order = 1)]
     public int BlogId { get; set; }
-    [ForeignKey ("BlogId")]
+    [ForeignKey("BlogId")]
     public Blog Blog { get; set; }
 
     [Key, Column(Order = 2)]
@@ -16,4 +16,3 @@ public class BlogTag
     [ForeignKey("TagId")]
     public Tag Tag { get; set; }
 }
-
