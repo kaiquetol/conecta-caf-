@@ -16,7 +16,7 @@
                     </a>
                 </div>
             </div>
-            <div class="card-body px-0 pb-2">
+            <div class="card-body pb-2">
                 <div class="table-responsive p-0">
                     <table id="dataTable" class="table align-items-center justify-content-center mb-0 w-100">
                         <thead>
@@ -25,8 +25,6 @@
                                 </th>
                                 <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
                                     Ações</th>
-
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +40,7 @@
                                         </a> 
                                         <a asp-action="Details" asp-route-id="@item.Id" title="Detalhes">
                                             <i class="material-icons m-1">description</i>
-                                        </a> 
+                                        </a>  
                                         <a asp-action="Delete" asp-route-id="@item.Id" title="Deletar">
                                             <i class="material-icons m-1">delete</i>
                                         </a>
@@ -57,6 +55,20 @@
     </div>
 </div>
 
-
-
+@section Scripts
+{
+    <script>
+        let datatable = new DataTable('#dataTable', {
+            language: {
+                url:'../../lib/datatables/pt-BR.json'
+            },
+            initComplete: function(settings, json) {
+                document.querySelector('.dt-length').classList.add('text-xs');
+                document.querySelector('.dt-search').classList.add('text-xs');
+                document.querySelector('.dt-info').classList.add('text-xs');
+                document.querySelector('.dt-paging').classList.add('text-xs');
+            }
+        });
+    </script>
+}
 
