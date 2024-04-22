@@ -28,10 +28,10 @@ CREATE TABLE Avaliacao
 (
 	Id				int not null identity,
 	Pessoa			varchar(60) not null,
-	Titulo			varchar(100) not null,
 	Texto			varchar(500) not null,
 	Nota			decimal(1,0) not null,
 	DataAvaliacao	date,
+	Foto			varchar(200),
 	
 	Constraint PK_Avaliacao primary key(Id)
 );

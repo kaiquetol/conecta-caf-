@@ -1,7 +1,7 @@
-@model IEnumerable<ConectaCafe.Models.Produto>
+@model IEnumerable<ConectaCafe.Models.Avaliacao>
 
 @{
-    ViewData["Title"] = "Produtos";
+    ViewData["Title"] = "Avaliações";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -23,12 +23,15 @@
                         <thead>
                             <tr>
                                 <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                    @Html.DisplayNameFor(model => model.Nome)
+                                    @Html.DisplayNameFor(model => model.Pessoa)
                                 </th>
                                 <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
-                                    Categoria</th>
-                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 text-start">
-                                    Preço</th>
+                                    @Html.DisplayNameFor(model => model.Texto)</th>
+                                <th
+                                    class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 text-start">
+                                    @Html.DisplayNameFor(model => model.Nota)</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
+                                    @Html.DisplayNameFor(model => model.DataAvaliacao)</th>
                                 <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
                                     Ações</th>
                             </tr>
@@ -37,14 +40,17 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="text-dark ">
-                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Pessoa)
                                     </td>
-                                    <td class="text-dark ">
-                                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Texto)
                                     </td>
-                                    <td class="text-dark text-start ">
-                                        @Html.DisplayFor(modelItem => item.Preco)
+                                    <td class="text-start">
+                                        @Html.DisplayFor(modelItem => item.Nota)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DataAvaliacao)
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.Id" title="Alterar">
@@ -83,5 +89,3 @@
         });
     </script>
 }
-
-
